@@ -1,8 +1,16 @@
-jobs:  
+jobs:
+  name: runshscript
+    type: runSh
+    steps:
+      - IN: sample_prodCiPipelinesRepo_runCI
+       # showBuildStatus: true
+      - TASK:
+        - script: ls
+  
   - name: runshscript
     type: runSh
     steps:
-      - IN: pipeline_scriptRepo
+      - IN: sample_prodCiPipelinesRepo
        # showBuildStatus: true
       - IN: ship_dh
       - IN: sample_img
@@ -10,14 +18,14 @@ jobs:
       - IN: t2runsh
       - IN: key-values
       - TASK:
-        - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/runsh/testScript.sh
+        - script: ./IN/sample_prodCiPipelinesRepo/gitRepo/runsh/runsh/testScript.sh
         - script: echo $key1
         - script: echo $key2
         - script: echo "param resource user defined env $TEST"
         - script: echo "param resource user defined env $DEV"
       - OUT: test_out_img
     flags: runshscript
-
+ 
   - name: runsh_pre_jobscript
     type: runSh
     allowPublicAccess: true
@@ -29,7 +37,7 @@ jobs:
       - script: echo 'it is for on_start'      
     steps:    
       - IN: sample_prodCiPipelinesRepo
-        #switch: off
+        switch: off
       - IN: runshscript   
       - IN: test_params
       - IN: same_syncRepos
