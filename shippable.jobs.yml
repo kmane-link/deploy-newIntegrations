@@ -2,7 +2,7 @@ jobs:
   - name: sample_runShCI
     type: runSh
     steps:
-      - IN: sample_prodCiPipelinesRepo_runCI
+      - IN: sample_prodCiPipelines_runCI
        # showBuildStatus: true
       - TASK:
         - script: ls
@@ -39,8 +39,6 @@ jobs:
       - IN: sample_prodCiPipelinesRepo
         switch: off
       - IN: runshscript   
-      - IN: test_params
-      - IN: same_syncRepos
       - TASK:
         - script: echo $FOO
         - script: ./IN/sample_prodCiPipelinesRepo/gitRepo/runsh/pre_runshJob.sh        
