@@ -1,0 +1,125 @@
+resources:
+  - name: sample_prodCiPipelinesRepo
+    type: gitRepo
+    integration: github
+    pointer:
+      sourceName: "shiphitchcock1/sample_prodCiPipelines"
+      branches:
+        only:
+          - master
+          - pr
+      buildOnPullRequest: true
+    flags: sample_prodCiPipelines_commitAndPrsRepo
+  
+  - name: plscript_RepoTagsnReleases
+    type: gitRepo
+    integration: github
+    pointer:
+      sourceName: "shiphitchcock1/sample_prodCiPipelines"
+      tags: 
+        only:
+          - v1.*
+      buildOnTagPush: true
+      buildOnRelease: true
+    flags: sample_prodCiPipelines_tagsAndReleasesRepo
+      
+  - name: sample_img
+    type: image
+    integration: docker
+    pointer:
+      sourceName: "shippabledocker/pipelinev2"
+    seed:
+      versionName: "deploy.2"
+    flags: sample_img
+    
+  - name: deploy_img
+    type: image
+    integration: docker
+    pointer:
+      sourceName: "shippabledocker/pipelinev2"
+    seed:
+      versionName: "deploy.1"
+    flags: deploy_img 
+    
+  - name: ddc_cluster
+    type: cluster
+    integration: ddc
+    pointer:
+      sourceName : "nothing"
+    flags: ddc_cluster  
+    
+  - name: ddc_dopts
+    type: dockerOptions
+    version:
+      memory: 128
+    flags: ddc_options  
+    
+  - name: test_out_img
+    type: image
+    integration: docker
+    pointer:
+      sourceName: "shippabledocker/ship_plv2node"
+    seed:
+      versionName: "latest"
+    flags: test_out_img    
+    
+  - name: ship_dh
+    type: integration
+    integration: "docker"  
+    flags: ship_dh
+
+  - name: test_params
+    type: params
+    version:
+      params:
+        TEST: rc
+        #secure: tHZDMmSNXi7vCqpc9/BjArt5i0CKyjiz0TaFnRAvSxzUpYxWahlej6NHrzCLs+y0Oj0SE94/WdV8eYNFh7pR12h1aba1hPvO2KpOFwAzQis2Hjb6vwWvIoyLIJUaDrhF3Pd0DeqK7azMGbiwzPwPeBoBnx4qF8zZerp6L1OPFK+y+DiIx3jbJqMmoWizeAOdxb/cESxQP5P9eggCCvkHu+w1xf2jXbTLxos1PHep+MxvwOXx5mMQy/yeSU2grX5CW5BQpicH4Lz/InhKhNmXWWAK18hFtRcwS1s7DJ2bSSUne9/mYVijYtTSFwh5Uiz7YF8Y6bjMBeHlJfU+VngVjQ== #DEV=alpha
+    flags: test_params
+    
+  - name: notify-slack
+    type: notification
+    integration: "slack"
+    pointer:
+      recipients:
+        - "#rc-public" 
+        - "#rc-private"
+        - "@shiptest-rc-ow"
+    flags: slack
+    
+  - name: notify-email
+    type: notification
+    pointer:
+      method: email
+      recipients: 
+        - shiptest.rc.ow@gmail.com
+        - shiptest.rc.me@gmail.com
+    flags: email
+    
+  - name: notify-irc
+    type: notification
+    pointer:
+      method: irc
+      recipients: 
+        - "webchat.irchighway.net#test-rc"
+        - "webchat.irchighway.net#test"
+    flags: irc
+    
+  - name: notify-hipchat
+    type: notification
+    integration: "hipchat"
+    pointer:
+      recipients:
+        - "#rc-public" 
+        - "#rc-private"
+        - "@shiptestrcow"
+    flags: hipchat  
+    
+  - name: ship_aws_cli
+    type: cliConfig
+    integration: "aws"
+    pointer:
+      region: "us-east-1"
+  
+  - name: ship_dh_cli
+    type: cliConfig
+    integration: "docker"
