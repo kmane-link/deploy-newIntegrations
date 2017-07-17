@@ -122,3 +122,8 @@ resources:
   - name: ship_dh_cli
     type: cliConfig
     integration: "docker"
+    
+  - name: key-values
+    type: integration
+    integration: "keyvalueInt"
+    
