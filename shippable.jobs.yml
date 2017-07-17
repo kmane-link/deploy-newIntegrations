@@ -1,0 +1,108 @@
+jobs:  
+  - name: runshscript
+    type: runSh
+    steps:
+      - IN: pipeline_scriptRepo
+       # showBuildStatus: true
+      - IN: ship_dh
+      - IN: sample_img
+      - IN: test_params  
+      - IN: t2runsh
+      - IN: key-values
+      - TASK:
+        - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/testscript.sh
+        - script: echo $key1
+        - script: echo $key2
+      - OUT: test_out_img
+    flags: runshscript
+
+  - name: runsh_pre_jobscript
+    type: runSh
+    allowPublicAccess: true
+    on_start:
+      - NOTIFY: notify-slack
+      - NOTIFY: notify-email
+      - NOTIFY: notify-hipchat
+      - NOTIFY: notify-irc
+      - script: echo 'it is for on_start'      
+    steps:    
+      - IN: sample_prodCiPipelinesRepo
+        #switch: off
+      - IN: runshscript   
+      - IN: test_params
+      - IN: same_syncRepos
+      - TASK:
+        - script: echo $FOO
+        - script: ./IN/sample_prodCiPipelinesRepo/gitRepo/echo.sh    
+        - script: echo "param resource user defined env $TEST"
+        - script: echo "param resource user defined env $DEV"
+       # - script: printenv
+    flags: runsh_pre_jobscript
+    on_success:      
+      - script: echo 'test in on_success'
+      - script: ls
+      - script: echo 'it is success'
+    # # - script: ./IN/sample-script-3/gitRepo/echo.sh
+    on_failure:
+      - script: echo 'testing1 failure'      
+      - script: pwd
+      - script: echo 'OOPS on_failure :('
+    on_cancel:
+      - script: echo "This works on_always"
+      - NOTIFY: notify-slack
+      - NOTIFY: notify-email
+      - NOTIFY: notify-hipchat
+      - NOTIFY: notify-irc
+
+  - name: runcliscript
+    type: runCLI
+    #allowPublicAccess: true
+    steps:      
+      - IN: sample_prodCiPipelinesRepoTagsnReleases 
+      - IN: ship_dh_cli
+      - IN: t3runcli
+      - IN: key-values
+      - TASK:        
+        - script: ./IN/sample_prodCiPipelinesRepoTagsnReleases/gitRepo/echo.sh 
+        - script: echo $key1
+        - script: echo $key2        
+    flags: runcliscript 
+    always:
+      - script: echo "This works on_always"
+      - NOTIFY: notify-slack
+      - NOTIFY: notify-email
+      - NOTIFY: notify-hipchat
+      - NOTIFY: notify-irc
+ 
+  - name: manifest_dep
+    type: manifest
+    steps:
+      - IN: deploy_img       
+      - IN: t1
+    flags: manifest_dep 
+    
+  - name: deploy_ddc
+    type: deploy    
+    on_start:
+      - NOTIFY: notify-slack
+      - NOTIFY: notify-email
+      - NOTIFY: notify-hipchat
+      - NOTIFY: notify-irc
+    steps:      
+      - IN: manifest_dep
+      - IN: ddc_cluster
+      - IN: ddc_dopts
+      - IN: t2runsh
+      - TASK: managed
+    flags: deploy_ddc
+    on_success:         
+      - NOTIFY: notify-slack
+      - NOTIFY: notify-email
+      - NOTIFY: notify-hipchat
+      - NOTIFY: notify-irc      
+    on_failure:
+      - NOTIFY: notify-slack
+      - NOTIFY: notify-email
+      - NOTIFY: notify-hipchat
+      - NOTIFY: notify-irc
+      
