@@ -81,9 +81,9 @@ resources:
     integration: "slack"
     pointer:
       recipients:
-        - "#rc-public" 
-        - "#rc-private"
-        - "@shiptest-rc-ow"
+        - "#prod-public" 
+        - "#prod-private"
+        - "@shiphitchcock1"
     flags: slack
     
   - name: notify-email
@@ -91,8 +91,7 @@ resources:
     pointer:
       method: email
       recipients: 
-        - shiptest.rc.ow@gmail.com
-        - shiptest.rc.me@gmail.com
+        - shiphitchcock1@gmail.com
     flags: email
     
   - name: notify-irc
@@ -100,7 +99,7 @@ resources:
     pointer:
       method: irc
       recipients: 
-        - "webchat.irchighway.net#test-rc"
+        - "webchat.irchighway.net#test-prod"
         - "webchat.irchighway.net#test"
     flags: irc
     
@@ -109,9 +108,9 @@ resources:
     integration: "hipchat"
     pointer:
       recipients:
-        - "#rc-public" 
-        - "#rc-private"
-        - "@shiptestrcow"
+        - "#prod-public" 
+        - "#prod-private"
+        - "@shiphitchcock1"
     flags: hipchat  
     
   - name: ship_aws_cli
