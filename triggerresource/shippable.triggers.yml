@@ -1,0 +1,16 @@
+triggers:
+  - name: t1
+    type: trigger
+    version:
+      counter: 2
+      
+  - name: t2runsh
+    type: trigger
+    version:
+      counter: 3
+      
+  - name: t3runcli
+    type: trigger
+    version:
+      counter: 1
+      
