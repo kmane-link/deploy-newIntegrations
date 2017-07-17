@@ -10,7 +10,7 @@ jobs:
       - IN: t2runsh
       - IN: key-values
       - TASK:
-        - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/testscript.sh
+        - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/runsh/testScript.sh
         - script: echo $key1
         - script: echo $key2
         - script: echo "param resource user defined env $TEST"
@@ -35,7 +35,7 @@ jobs:
       - IN: same_syncRepos
       - TASK:
         - script: echo $FOO
-        - script: ./IN/sample_prodCiPipelinesRepo/gitRepo/echo.sh           
+        - script: ./IN/sample_prodCiPipelinesRepo/gitRepo/runsh/pre_runshJob.sh        
        # - script: printenv
     flags: runsh_pre_jobscript
     on_success:      
@@ -63,7 +63,7 @@ jobs:
       - IN: t3runcli
       - IN: key-values
       - TASK:        
-        - script: ./IN/sample_prodCiPipelinesRepoTagsnReleases/gitRepo/echo.sh 
+        - script: ./IN/sample_prodCiPipelinesRepoTagsnReleases/gitRepo/runCli/runcliScript.sh
         - script: echo $key1
         - script: echo $key2        
     flags: runcliscript 
