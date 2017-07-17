@@ -13,6 +13,8 @@ jobs:
         - script: ./IN/pipeline_scriptRepo/gitRepo/runsh/testscript.sh
         - script: echo $key1
         - script: echo $key2
+        - script: echo "param resource user defined env $TEST"
+        - script: echo "param resource user defined env $DEV"
       - OUT: test_out_img
     flags: runshscript
 
@@ -33,9 +35,7 @@ jobs:
       - IN: same_syncRepos
       - TASK:
         - script: echo $FOO
-        - script: ./IN/sample_prodCiPipelinesRepo/gitRepo/echo.sh    
-        - script: echo "param resource user defined env $TEST"
-        - script: echo "param resource user defined env $DEV"
+        - script: ./IN/sample_prodCiPipelinesRepo/gitRepo/echo.sh           
        # - script: printenv
     flags: runsh_pre_jobscript
     on_success:      
