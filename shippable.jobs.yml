@@ -18,7 +18,7 @@ jobs:
       - IN: t2runsh
       - IN: key-values
       - TASK:
-        - script: ./IN/sample_prodCiPipelinesRepo/gitRepo/runsh/runsh/testScript.sh
+        - script: ./IN/sample_prodCiPipelinesRepo/gitRepo/runsh/testScript.sh
         - script: echo $key1
         - script: echo $key2
         - script: echo "param resource user defined env $TEST"
