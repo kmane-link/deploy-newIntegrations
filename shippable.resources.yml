@@ -11,7 +11,7 @@ resources:
       buildOnPullRequest: true
     flags: sample_prodCiPipelines_commitAndPrsRepo
   
-  - name: plscript_RepoTagsnReleases
+  - name: sample_prodCiPipelinesRepoTagsnReleases
     type: gitRepo
     integration: github
     pointer:
