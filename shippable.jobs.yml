@@ -1,5 +1,5 @@
 jobs:
-  name: runshscript
+  - name: sample_runShCI
     type: runSh
     steps:
       - IN: sample_prodCiPipelinesRepo_runCI
