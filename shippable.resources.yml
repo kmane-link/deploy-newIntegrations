@@ -1,26 +1,25 @@
 resources:
   - name: sample_prodCiPipelinesRepo
     type: gitRepo
-    integration: github
+    integration: bitbucket
     pointer:
-      sourceName: "shiphitchcock1/sample_prodCiPipelines"
+      sourceName: "shiptest-rc-me/sample_prodCiPipelines"
       branches:
         only:
           - master
-          - pr
+        #  - pr
       buildOnPullRequest: true
     flags: sample_prodCiPipelines_commitAndPrsRepo
   
   - name: sample_prodCiPipelinesRepoTagsnReleases
     type: gitRepo
-    integration: github
+    integration: bitbucket
     pointer:
-      sourceName: "shiphitchcock1/sample_prodCiPipelines"
+      sourceName: "shiptest-rc-me/sample_prodCiPipelines"
       tags: 
         only:
           - v1.*
       buildOnTagPush: true
-      buildOnRelease: true
     flags: sample_prodCiPipelines_tagsAndReleasesRepo
       
   - name: sample_img
@@ -113,11 +112,11 @@ resources:
         - "@shiphitchcock1"
     flags: hipchat  
     
-  - name: ship_aws_cli
-    type: cliConfig
-    integration: "aws"
-    pointer:
-      region: "us-east-1"
+  #- name: ship_aws_cli
+   # type: cliConfig
+   # integration: "aws"
+   # pointer:
+   #   region: "us-east-1"
   
   - name: ship_dh_cli
     type: cliConfig
