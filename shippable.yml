@@ -2,7 +2,12 @@ language: node_js
 
 # Version number
 node_js:
-  - 0.12
+  #- 0.12
+  #- 4.8.4
+  #- 5.12.0
+  #- 6.7.0
+  - 7.0.0
+ # - 7.4.0  
   
 build:
   ci:
@@ -23,6 +28,7 @@ notifications:
         - shiptest.rc.ow@gmail.com
       sendConsoleLogs : true
       sendCoverageReports : true
+      on_start: always
       on_success: always
       on_failure: always
       on_pull_request: always
@@ -34,6 +40,7 @@ notifications:
         - "#prod-public" 
         - "#prod-private"
         - "@shiptest-rc-ow"
+      on_start: always
       on_success: always
       on_failure: always
       on_pull_request: always
@@ -44,6 +51,7 @@ notifications:
       recipients:
         - "chat.freenode.net#test-rc"
         - "webchat.irchighway.net#irc-three"
+      on_start: always
       on_success: always
       on_failure: always
       on_pull_request: always
@@ -55,6 +63,7 @@ notifications:
         - '#prod-private'
         - '#prod-public'
         - '@shiptestrcow'
+      on_start: always
       on_success: always   
       on_failure: always
       on_pull_request: always
