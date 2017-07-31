@@ -13,3 +13,49 @@ build:
     - docker --version
     - docker info
     - docker ps
+
+notifications:   
+    - integrationName: email
+      type: email
+      recipients: 
+        - shiptest.rc.me@gmail.com
+        - shiptest.rc.ow@gmail.com
+      sendConsoleLogs : true
+      sendCoverageReports : true
+      on_success: always
+      on_failure: always
+      on_pull_request: always
+      on_cancel: always
+      
+    - integrationName: slack 
+      type: slack
+      recipients: 
+        - "#prod-public" 
+        - "#prod-private"
+        - "@shiptest-rc-ow"
+      on_success: always
+      on_failure: always
+      on_pull_request: always
+      on_cancel: always
+      
+    - integrationName: irc    
+      type: irc
+      recipients:
+        - "chat.freenode.net#test-rc"
+        - "webchat.irchighway.net#irc-three"
+      on_success: always
+      on_failure: always
+      on_pull_request: always
+      on_cancel: always
+      
+    - integrationName: hipchat
+      type: hipchat
+      recipients:
+        - '#prod-private'
+        - '#prod-public'
+        - '@shiptestrcow'
+      on_success: always   
+      on_failure: always
+      on_pull_request: always
+      on_cancel: always
+      
