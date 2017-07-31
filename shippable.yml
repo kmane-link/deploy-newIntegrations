@@ -19,7 +19,8 @@ build:
     - docker info
     - docker ps
 
-notifications: 
+integrations:
+  notifications: 
 
     - integrationName: email
       type: email
