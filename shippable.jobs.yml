@@ -2,7 +2,7 @@ jobs:
   - name: sample_runShCI
     type: runSh
     steps:
-      - IN: sample_prodCiPipelines_runCI
+      - IN: sample_prodcipipelines_runCI
        # showBuildStatus: true
       - TASK:
         - script: ls
