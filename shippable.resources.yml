@@ -3,7 +3,7 @@ resources:
     type: gitRepo
     integration: bitbucket
     pointer:
-      sourceName: "shiptest-rc-me/sample_prodCiPipelines"
+      sourceName: "shiptest-rc-me/sample_prodcipipelines"
       branches:
         only:
           - master
@@ -15,7 +15,7 @@ resources:
     type: gitRepo
     integration: bitbucket
     pointer:
-      sourceName: "shiptest-rc-me/sample_prodCiPipelines"
+      sourceName: "shiptest-rc-me/sample_prodcipipelines"
       tags: 
         only:
           - v1.*
