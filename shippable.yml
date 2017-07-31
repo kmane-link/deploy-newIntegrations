@@ -14,7 +14,8 @@ build:
     - docker info
     - docker ps
 
-notifications:   
+notifications: 
+
     - integrationName: email
       type: email
       recipients: 
@@ -57,5 +58,5 @@ notifications:
       on_success: always   
       on_failure: always
       on_pull_request: always
-      on_cancel: always
+      on_cancel: always  
       
