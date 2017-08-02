@@ -23,6 +23,7 @@ jobs:
         - script: echo $key2
         - script: echo "param resource user defined env $TEST"
         - script: echo "param resource user defined env $DEV"
+        - script: sleep 3m
       - OUT: test_out_img
     flags: runshscript
  
@@ -41,7 +42,8 @@ jobs:
       - IN: runshscript   
       - TASK:
         - script: echo $FOO
-        - script: ./IN/sample_prodCiPipelinesRepo/gitRepo/runsh/pre_runshJob.sh        
+        - script: ./IN/sample_prodCiPipelinesRepo/gitRepo/runsh/pre_runshJob.sh   
+        - script: sleep 3m
        # - script: printenv
     flags: runsh_pre_jobscript
     on_success:      
@@ -71,7 +73,8 @@ jobs:
       - TASK:        
         - script: ./IN/sample_prodCiPipelinesRepoTagsnReleases/gitRepo/runCli/runcliScript.sh
         - script: echo $key1
-        - script: echo $key2        
+        - script: echo $key2    
+        - script: sleep 3m
     flags: runcliscript 
     always:
       - script: echo "This works on_always"
