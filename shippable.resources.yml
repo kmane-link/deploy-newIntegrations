@@ -75,9 +75,9 @@ resources:
         #secure: tHZDMmSNXi7vCqpc9/BjArt5i0CKyjiz0TaFnRAvSxzUpYxWahlej6NHrzCLs+y0Oj0SE94/WdV8eYNFh7pR12h1aba1hPvO2KpOFwAzQis2Hjb6vwWvIoyLIJUaDrhF3Pd0DeqK7azMGbiwzPwPeBoBnx4qF8zZerp6L1OPFK+y+DiIx3jbJqMmoWizeAOdxb/cESxQP5P9eggCCvkHu+w1xf2jXbTLxos1PHep+MxvwOXx5mMQy/yeSU2grX5CW5BQpicH4Lz/InhKhNmXWWAK18hFtRcwS1s7DJ2bSSUne9/mYVijYtTSFwh5Uiz7YF8Y6bjMBeHlJfU+VngVjQ== #DEV=alpha
     flags: test_params
     
-  - name: notify-slack
+  - name: notify-slack1
     type: notification
-    integration: "slack"
+    integration: "notify-slack"
     pointer:
       recipients:
         - "#prod-public" 
@@ -85,7 +85,7 @@ resources:
         - "@shiptest-rc-ow"
     flags: slack
     
-  - name: notify-email
+  - name: notify-email1
     type: notification
     pointer:
       method: email
@@ -94,7 +94,7 @@ resources:
         - shiptest.rc.me@gmail.com
     flags: email
     
-  - name: notify-irc
+  - name: notify-irc1
     type: notification
     pointer:
       method: irc
@@ -104,9 +104,9 @@ resources:
         - "webchat.irchighway.net#irc-three"
     flags: irc
     
-  - name: notify-hipchat
+  - name: notify-hipchat1
     type: notification
-    integration: "hipchat"
+    integration: "notfy-hipchat"
     pointer:
       recipients:
         - "#prod-public" 
