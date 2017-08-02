@@ -106,7 +106,7 @@ resources:
     
   - name: notify-hipchat1
     type: notification
-    integration: "notfy-hipchat"
+    integration: "notify-hipchat"
     pointer:
       recipients:
         - "#prod-public" 
