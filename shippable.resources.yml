@@ -16,10 +16,13 @@ resources:
     integration: bitbucket
     pointer:
       sourceName: "shiptest-rc-me/sample_prodcipipelines"
-      tags: 
+      branches:
         only:
-          - v1.*
-      buildOnTagPush: true
+          - master
+    #  tags: 
+     #   only:
+       #   - v1.*
+      #buildOnTagPush: true
     flags: sample_prodCiPipelines_tagsAndReleasesRepo
       
   - name: sample_img
