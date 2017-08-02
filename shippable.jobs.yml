@@ -30,10 +30,10 @@ jobs:
     type: runSh
     allowPublicAccess: true
     on_start:
-      - NOTIFY: notify-slack
-      - NOTIFY: notify-email
-      - NOTIFY: notify-hipchat
-      - NOTIFY: notify-irc
+      - NOTIFY: notify-slack1
+      - NOTIFY: notify-email1
+      - NOTIFY: notify-hipchat1
+      - NOTIFY: notify-irc1
       - script: echo 'it is for on_start'      
     steps:    
       - IN: sample_prodCiPipelinesRepo
@@ -55,14 +55,14 @@ jobs:
       - script: echo 'OOPS on_failure :('
     on_cancel:
       - script: echo "This works on_always"
-      - NOTIFY: notify-slack
-      - NOTIFY: notify-email
-      - NOTIFY: notify-hipchat
-      - NOTIFY: notify-irc
+      - NOTIFY: notify-slack1
+      - NOTIFY: notify-email1
+      - NOTIFY: notify-hipchat1
+      - NOTIFY: notify-irc1
 
   - name: runcliscript
     type: runCLI
-    #allowPublicAccess: true
+    allowPublicAccess: false
     steps:      
       - IN: sample_prodCiPipelinesRepoTagsnReleases 
       - IN: ship_dh_cli
@@ -75,10 +75,10 @@ jobs:
     flags: runcliscript 
     always:
       - script: echo "This works on_always"
-      - NOTIFY: notify-slack
-      - NOTIFY: notify-email
-      - NOTIFY: notify-hipchat
-      - NOTIFY: notify-irc
+      - NOTIFY: notify-slack1
+      - NOTIFY: notify-email1
+      - NOTIFY: notify-hipchat1
+      - NOTIFY: notify-irc1
  
   - name: manifest_dep
     type: manifest
@@ -90,10 +90,10 @@ jobs:
   - name: deploy_ddc
     type: deploy    
     on_start:
-      - NOTIFY: notify-slack
-      - NOTIFY: notify-email
-      - NOTIFY: notify-hipchat
-      - NOTIFY: notify-irc
+      - NOTIFY: notify-slack1
+      - NOTIFY: notify-email1
+      - NOTIFY: notify-hipchat1
+      - NOTIFY: notify-irc1
     steps:      
       - IN: manifest_dep
       - IN: ddc_cluster
@@ -102,13 +102,13 @@ jobs:
       - TASK: managed
     flags: deploy_ddc
     on_success:         
-      - NOTIFY: notify-slack
-      - NOTIFY: notify-email
-      - NOTIFY: notify-hipchat
-      - NOTIFY: notify-irc      
+      - NOTIFY: notify-slack1
+      - NOTIFY: notify-email1
+      - NOTIFY: notify-hipchat1
+      - NOTIFY: notify-irc1    
     on_failure:
-      - NOTIFY: notify-slack
-      - NOTIFY: notify-email
-      - NOTIFY: notify-hipchat
-      - NOTIFY: notify-irc
+      - NOTIFY: notify-slack1
+      - NOTIFY: notify-email1
+      - NOTIFY: notify-hipchat1
+      - NOTIFY: notify-irc1
       
