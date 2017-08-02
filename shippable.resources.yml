@@ -16,9 +16,7 @@ resources:
     integration: bitbucket
     pointer:
       sourceName: "shiptest-rc-me/sample_prodcipipelines"
-      branches:
-        only:
-          - master
+      branch: master
     #  tags: 
      #   only:
        #   - v1.*
