@@ -23,24 +23,25 @@ resources:
     seed:
       versionName: "deploy.2"
       
-  - name: oldddc_cluster
+  - name: oldtriton_cluster
     type: cluster
-    integration: ddc
+    integration: ship-tripub
     pointer:
-      sourceName : "nothing"
+      sourceName: "default" # we can give anything it deploy instances based on region not by cluster name
+      region: "us-east-2"
   
-  - name: newddc_cluster
+  - name: newtriton_cluster
     type: cluster
-    integration: newddc
+    integration: ship-newtripub
     pointer:
-      sourceName : "nothing"
+      sourceName: "default" # we can give anything it deploy instances based on region not by cluster name
+      region: "us-east-2"
     
-  - name: ddc_dopts
+  - name: tripub_dopts
     type: dockerOptions
     version:
       memory: 128
-    flags: ddc_options  
-    
+
   - name: test_out_img
     type: image
     integration: docker
@@ -50,13 +51,13 @@ resources:
       versionName: "latest"
     flags: test_out_img    
     
-  - name: ship_oldddcint
+  - name: ship_oldtripubint
     type: integration
-    integration: "ddc"  
+    integration: "ship-tripub"  
   
-  - name: ship_newddcint
+  - name: ship_newtripubint
     type: integration
-    integration: "newddc" 
+    integration: "ship-newtripub" 
     
   - name: test_params
     type: params
