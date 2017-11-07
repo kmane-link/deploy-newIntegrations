@@ -58,12 +58,17 @@ resources:
     version:
       params:
         TEST: rc
-
-  - name: ship_oldddc_cli
-    type: cliConfig
-    integration: "ddc"
   
-  - name: ship_newddc_cli
-    type: cliConfig
-    integration: "newddc"
+  - name: test_replica
+    type: replicas
+    version:
+      count: 2
+      
+ # - name: ship_oldddc_cli
+ #   type: cliConfig
+  #  integration: "ddc"
+  
+ # - name: ship_newddc_cli
+ #   type: cliConfig
+  #  integration: "newddc"
     
