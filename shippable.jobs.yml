@@ -14,7 +14,7 @@ jobs:
        # showBuildStatus: true
       - IN: ship_oldtripubint
       - TASK:
-        - script: echo $SHIP_OLDTRIPUBINT_INTEGRATION_NAME
+        - script: echo $SHIPOLDTRIPUBINT_INTEGRATION_NAME
         - script: echo $SHIP_OLDTRIPUBINT_INTEGRATION_USERNAME
         - script: echo $SHIP_OLDTRIPUBINT_INTEGRATION_VALIDITYPERIOD
         - script: echo $SHIP_OLDTRIPUBINT_INTEGRATION_CERTIFICATES
@@ -29,7 +29,7 @@ jobs:
        # showBuildStatus: true
       - IN: ship_newtripubint
       - TASK:
-        - script: echo $SHIP_NEWTRIPUBINT_INTEGRATION_NAME
+        - script: echo $SHIPNEWTRIPUBINT_INTEGRATION_NAME
         - script: echo $SHIP_NEWTRIPUBINT_INTEGRATION_USERNAME
         - script: echo $SHIP_NEWTRIPUBINT_INTEGRATION_VALIDITYPERIOD
         - script: echo $SHIP_NEWTRIPUBINT_INTEGRATION_CERTIFICATES
