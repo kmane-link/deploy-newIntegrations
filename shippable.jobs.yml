@@ -67,6 +67,7 @@ jobs:
     workflow: serial
     steps:      
       - IN: manifest_dep
+      - IN: manifest_dep2
       - IN: newddc_cluster
       - IN: ddc_dopts
       - TASK: managed  
@@ -97,6 +98,7 @@ jobs:
     workflow: serial
     steps:      
       - IN: manifest_dep
+      - IN: manifest_dep2
       - IN: oldddc_cluster
       - IN: ddc_dopts
       - TASK: managed  
@@ -126,6 +128,7 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest_dep
+      - IN: manifest_dep2
       - IN: oldddc_cluster
       - IN: ddc_dopts
       - TASK: managed  
@@ -137,6 +140,7 @@ jobs:
     workflow: parallel
     steps:      
       - IN: manifest_dep
+      - IN: manifest_dep2
       - IN: oldddc_cluster
       - IN: ddc_dopts
       - TASK: managed  
@@ -147,6 +151,7 @@ jobs:
     #workflow: parallel
     steps:      
       - IN: manifest_dep
+      - IN: manifest_dep2
       - IN: newddc_cluster
       - IN: ddc_dopts
       - TASK: managed 
@@ -159,6 +164,7 @@ jobs:
     #workflow: parallel
     steps:      
       - IN: manifest_dep
+      - IN: manifest_dep2
       - IN: newddc_cluster
       - IN: ddc_dopts
       - TASK: managed 
