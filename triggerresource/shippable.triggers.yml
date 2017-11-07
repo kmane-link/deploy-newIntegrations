@@ -1,16 +1,5 @@
 triggers:
-  - name: t1
+  - name: t1ddc
     type: trigger
     version:
-      counter: 2
-      
-  - name: t2runsh
-    type: trigger
-    version:
-      counter: 3
-      
-  - name: t3runcli
-    type: trigger
-    version:
-      counter: 1
-      
+      counter: 0
