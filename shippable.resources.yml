@@ -4,10 +4,7 @@ resources:
     integration: bitbucket
     pointer:
       sourceName: "shiptest-rc-me/sample_prodcipipelines"
-      branches:
-        only:
-          - master
-        #  - pr
+      branch: ddc
       buildOnPullRequest: true
    
   - name: deploy_img
