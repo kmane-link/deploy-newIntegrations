@@ -55,8 +55,12 @@ jobs:
     type: manifest
     steps:
       - IN: deploy_img       
-      - IN: t1
-    
+  
+  - name: manifest_dep2
+    type: manifest
+    steps:
+      - IN: deploy_img2
+      
   - name: deploy-newddcupgradetoplevel
     type: deploy
     method: upgrade
