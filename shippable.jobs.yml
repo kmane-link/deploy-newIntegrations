@@ -7,49 +7,56 @@ jobs:
   #    - TASK:
     #    - script: ls
   
-  - name: oldddcint-runsh
+  - name: oldtritonint-runsh
     type: runSh
     steps:
       - IN: sample_prodCiPipelinesRepo
        # showBuildStatus: true
-      - IN: ship_oldddcint
+      - IN: ship_oldtripubint
       - TASK:
-        - script: echo $SHIP_OLDDDCINT_INTEGRATION_USERNAME
-        - script: echo $SHIP_OLDDDCINT_INTEGRATION_PASSWORD
-        - script: echo $SHIP_OLDDDCINT_INTEGRATION_URL
+        - script: echo $SHIP_OLDTRIPUBINT_INTEGRATION_NAME
+        - script: echo $SHIP_OLDTRIPUBINT_INTEGRATION_USERNAME
+        - script: echo $SHIP_OLDTRIPUBINT_INTEGRATION_VALIDITYPERIOD
+        - script: echo $SHIP_OLDTRIPUBINT_INTEGRATION_CERTIFICATES
+        - script: echo $SHIP_OLDTRIPUBINT_INTEGRATION_PRIVATEKEY
       #- OUT: test_out_img
  
-  - name: newddcint-runsh
+  - name: newtritonint-runsh
     type: runSh
     allowPublicAccess: false
     steps:      
       - IN: sample_prodCiPipelinesRepo
        # showBuildStatus: true
-      - IN: ship_newddcint
+      - IN: ship_newtripubint
       - TASK:
-        - script: echo $SHIP_NEWDDCINT_INTEGRATION_USERNAME
-        - script: echo $SHIP_NEWDDCINT_INTEGRATION_PASSWORD
-        - script: echo $SHIP_NEWDDCINT_INTEGRATION_URL
+        - script: echo $SHIP_NEWTRIPUBINT_INTEGRATION_NAME
+        - script: echo $SHIP_NEWTRIPUBINT_INTEGRATION_USERNAME
+        - script: echo $SHIP_NEWTRIPUBINT_INTEGRATION_VALIDITYPERIOD
+        - script: echo $SHIP_NEWTRIPUBINT_INTEGRATION_CERTIFICATES
+        - script: echo $SHIP_NEWTRIPUBINT_INTEGRATION_PRIVATEKEY
   
-  - name: oldddcclu-runsh
+  - name: oldtritonclu-runsh
     type: runSh
     steps:
-      - IN: oldddc_cluster
+      - IN: oldtriton_cluster
       - TASK:
-        - script: echo $OLDDDC_CLUSTER_INTEGRATION_USERNAME
-        - script: echo $OLDDDC_CLUSTER_INTEGRATION_PASSWORD
-        - script: echo $OLDDDC_CLUSTER_INTEGRATION_URL
-      #- OUT: test_out_img
- 
-  - name: newddcclu-runsh
+        - script: echo $OLDTRITON_CLUSTER_INTEGRATION_NAME
+        - script: echo $OLDTRITON_CLUSTER_INTEGRATION_USERNAME
+        - script: echo $OLDTRITON_CLUSTER_INTEGRATION_VALIDITYPERIOD
+        - script: echo $OLDTRITON_CLUSTER_INTEGRATION_CERTIFICATES
+        - script: echo $OLDTRITON_CLUSTER_INTEGRATION_PRIVATEKEY
+
+  - name: newtritonclu-runsh
     type: runSh
     allowPublicAccess: false
     steps:      
-      - IN: newddc_cluster
+      - IN: newtriton_cluster
       - TASK:
-        - script: echo $NEWDDC_CLUSTER_INTEGRATION_USERNAME
-        - script: echo $NEWDDC_CLUSTER_INTEGRATION_PASSWORD
-        - script: echo $NEWDDC_CLUSTER_INTEGRATION_URL
+        - script: echo $NEWTRITON_CLUSTER_INTEGRATION_NAME
+        - script: echo $NEWTRITON_CLUSTER_INTEGRATION_USERNAME
+        - script: echo $NEWTRITON_CLUSTER_INTEGRATION_VALIDITYPERIOD
+        - script: echo $NEWTRITON_CLUSTER_INTEGRATION_CERTIFICATES
+        - script: echo $NEWTRITON_CLUSTER_INTEGRATION_PRIVATEKEY
         
   - name: manifest_dep
     type: manifest
@@ -61,113 +68,113 @@ jobs:
     steps:
       - IN: deploy_img2
       
-  - name: deploy-newddcupgradetoplevel
+  - name: deploy-newtritonupgradetoplevel
     type: deploy
     method: upgrade
     workflow: serial
     steps:      
       - IN: manifest_dep
-      - IN: manifest_dep2
-      - IN: newddc_cluster
-      - IN: ddc_dopts
+      #- IN: manifest_dep2
+      - IN: newtriton_cluster
+      - IN: tripub_dopts
       - TASK: managed  
-    flags: new-ddc
+    flags: new-triton
   
-  - name: deploy-newddcupgradebottom
+  - name: deploy-newtritonupgradebottom
     type: deploy
     steps:      
       - IN: manifest_dep
-      - IN: newddc_cluster
-      - IN: ddc_dopts
+      - IN: newtriton_cluster
+      - IN: tripub_dopts
       - TASK: managed 
         deployMethod: upgrade
-    flags: new-ddc
+    flags: new-triton
     
-  - name: deploy-newddcdefault
+  - name: deploy-newtritondefault
     type: deploy
     steps:      
       - IN: manifest_dep
-      - IN: newddc_cluster
-      - IN: ddc_dopts
+      - IN: newtriton_cluster
+      - IN: tripub_dopts
       - TASK: managed  
-    flags: new-ddc
+    flags: new-triton
   
-  - name: deploy-oldddcupgradetoplevel
+  - name: deploy-oldtritonupgradetoplevel
     type: deploy
     method: upgrade
     workflow: serial
     steps:      
       - IN: manifest_dep
-      - IN: manifest_dep2
-      - IN: oldddc_cluster
-      - IN: ddc_dopts
+     # - IN: manifest_dep2
+      - IN: oldtriton_cluster
+      - IN: tripub_dopts
       - TASK: managed  
-    flags: old-ddc
+    flags: old-triton
   
-  - name: deploy-oldddcupgradebottom
+  - name: deploy-oldtritonupgradebottom
     type: deploy
     steps:      
       - IN: manifest_dep
-      - IN: oldddc_cluster
-      - IN: ddc_dopts
+      - IN: oldtriton_cluster
+      - IN: tripub_dopts
       - TASK: managed 
         deployMethod: upgrade
-    flags: old-ddc
+    flags: old-triton
     
-  - name: deploy-oldddcdefault
+  - name: deploy-oldtritondefault
     type: deploy
     steps:      
       - IN: manifest_dep
-      - IN: oldddc_cluster
-      - IN: ddc_dopts
+      - IN: oldtriton_cluster
+      - IN: tripub_dopts
       - TASK: managed  
-    flags: old-ddc
+    flags: old-triton
   
-  - name: deploy-oldddcbluegreen
+  - name: deploy-oldtritonbluegreen
     type: deploy
     workflow: parallel
     steps:      
       - IN: manifest_dep
       - IN: manifest_dep2
-      - IN: oldddc_cluster
-      - IN: ddc_dopts
+      - IN: oldtriton_cluster
+      - IN: tripub_dopts
       - TASK: managed  
-    flags: old-ddc
+    flags: old-triton
   
-  - name: deploy-oldddcreplace
+  - name: deploy-oldtritonreplace
     type: deploy
     method: replace
     workflow: parallel
     steps:      
       - IN: manifest_dep
-      - IN: manifest_dep2
-      - IN: oldddc_cluster
-      - IN: ddc_dopts
+     # - IN: manifest_dep2
+      - IN: oldtriton_cluster
+      - IN: tripub_dopts
       - TASK: managed  
-    flags: old-ddc
+    flags: old-triton
     
-  - name: deploy-newddcbluegreen
+  - name: deploy-newtritonbluegreen
     type: deploy
     #workflow: parallel
     steps:      
       - IN: manifest_dep
-      - IN: manifest_dep2
-      - IN: newddc_cluster
-      - IN: ddc_dopts
+     # - IN: manifest_dep2
+      - IN: newtriton_cluster
+      - IN: tripub_dopts
       - TASK: managed 
         deployMethod: blueGreen
-    flags: new-ddc
+    flags: new-triton
   
-  - name: deploy-newddcreplace
+  - name: deploy-newtritonreplace
     type: deploy
     #method: replace
     #workflow: parallel
     steps:      
       - IN: manifest_dep
-      - IN: manifest_dep2
-      - IN: newddc_cluster
-      - IN: ddc_dopts
+     # - IN: manifest_dep2
+      - IN: newtriton_cluster
+      - IN: tripub_dopts
       - TASK: managed 
         deployMethod: replace
-    flags: new-ddc
+    flags: new-triton
     
