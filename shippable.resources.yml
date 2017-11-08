@@ -4,8 +4,7 @@ resources:
     integration: github
     pointer:
       sourceName: "shiptest-rc-me/sample_prodcipipelines"
-      branch: awsiam
-      buildOnPullRequest: true
+      branch: master
    
   - name: deploy_img
     type: image
