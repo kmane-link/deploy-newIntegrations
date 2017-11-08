@@ -47,7 +47,7 @@ jobs:
         - script: echo $NEWAWSIAM_CLUSTER_INTEGRATION_NAME
         - script: echo $NEWAWSIAM_CLUSTER_INTEGRATION_ASSUMEROLEARN
         
-  - name: manifest_dep
+  - name: manifestdep
     type: manifest
     steps:
       - IN: deploy_img       
@@ -62,7 +62,7 @@ jobs:
     method: upgrade
     workflow: serial
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       #- IN: manifest_dep2
       - IN: newawsIam_cluster
       - IN: awsiam_dopts
@@ -72,7 +72,7 @@ jobs:
   - name: deploy-newawsiamupgradebottom
     type: deploy
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       - IN: newawsIam_cluster
       - IN: awsiam_dopts
       - TASK: managed 
@@ -82,7 +82,7 @@ jobs:
   - name: deploy-newawsiamdefault
     type: deploy
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       - IN: newawsIam_cluster
       - IN: awsiam_dopts
       - TASK: managed  
@@ -93,7 +93,7 @@ jobs:
     method: upgrade
     workflow: serial
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       #- IN: manifest_dep2
       - IN: oldawsIam_cluster
       - IN: awsiam_dopts
@@ -103,7 +103,7 @@ jobs:
   - name: deploy-oldawsiamupgradebottom
     type: deploy
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       - IN: oldawsIam_cluster
       - IN: awsiam_dopts
       - TASK: managed 
@@ -113,7 +113,7 @@ jobs:
   - name: deploy-oldawsiamdefault
     type: deploy
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       - IN: oldawsIam_cluster
       - IN: awsiam_dopts
       - TASK: managed  
@@ -123,7 +123,7 @@ jobs:
     type: deploy
     workflow: parallel
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       #- IN: manifest_dep2
       - IN: oldawsIam_cluster
       - IN: awsiam_dopts
@@ -135,7 +135,7 @@ jobs:
     method: replace
     workflow: parallel
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       #- IN: manifest_dep2
       - IN: oldawsIam_cluster
       - IN: awsiam_dopts
@@ -146,7 +146,7 @@ jobs:
     type: deploy
     #workflow: parallel
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       #- IN: manifest_dep2
       - IN: newawsIam_cluster
       - IN: awsiam_dopts
@@ -159,11 +159,10 @@ jobs:
     #method: replace
     #workflow: parallel
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       #- IN: manifest_dep2
       - IN: newawsIam_cluster
       - IN: awsiam_dopts
       - TASK: managed 
         deployMethod: replace
     flags: new-awsiam
-    
