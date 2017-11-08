@@ -3,7 +3,7 @@ resources:
     type: gitRepo
     integration: github
     pointer:
-      sourceName: "shiptestlink/sample_prodcipipelines"
+      sourceName: "shiptestlink/deploy-newIntegrations"
       branch: master
    
   - name: deploy_img
