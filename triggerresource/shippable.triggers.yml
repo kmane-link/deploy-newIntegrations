@@ -1,5 +1,5 @@
 triggers:
-  - name: t1ddc
+  - name: t1awsiam
     type: trigger
     version:
       counter: 0
