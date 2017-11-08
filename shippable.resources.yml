@@ -39,7 +39,8 @@ resources:
   - name: awsiam_dopts
     type: dockerOptions
     version:
-      memoryReservation: 64
+      memory: 128
+      #memoryReservation: 64
     flags: awsiam_options  
     
   - name: test_out_img
