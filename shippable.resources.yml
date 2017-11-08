@@ -1,7 +1,7 @@
 resources:
   - name: sample_prodCiPipelinesRepo
     type: gitRepo
-    integration: bitbucket
+    integration: github
     pointer:
       sourceName: "shiptest-rc-me/sample_prodcipipelines"
       branch: ddc
@@ -23,23 +23,25 @@ resources:
     seed:
       versionName: "deploy.2"
       
-  - name: oldddc_cluster
+  - name: oldawsIam_cluster
     type: cluster
-    integration: ddc
+    integration: awsiamold
     pointer:
-      sourceName : "nothing"
+      sourceName : "testiam"
+      region: "us-east-1"
   
-  - name: newddc_cluster
+  - name: newawsIam_cluster
     type: cluster
-    integration: newddc
+    integration: awsiamnew 
     pointer:
-      sourceName : "nothing"
+      sourceName : "testiam"
+      region: "us-east-1"
     
-  - name: ddc_dopts
+  - name: awsiam_dopts
     type: dockerOptions
     version:
       memory: 128
-    flags: ddc_options  
+    flags: awsiam_options  
     
   - name: test_out_img
     type: image
@@ -50,13 +52,13 @@ resources:
       versionName: "latest"
     flags: test_out_img    
     
-  - name: ship_oldddcint
+  - name: ship_oldawsiamint
     type: integration
-    integration: "ddc"  
+    integration: "awsiamold"  
   
-  - name: ship_newddcint
+  - name: ship_newawsiamint
     type: integration
-    integration: "newddc" 
+    integration: "awsiamnew" 
     
   - name: test_params
     type: params
