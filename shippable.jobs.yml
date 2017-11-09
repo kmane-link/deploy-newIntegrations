@@ -1,121 +1,18 @@
 jobs:
-  - name: sample_runShCI
+  - name: sample_runSh-dcl
     type: runSh
     steps:
       - IN: sample_prodcipipelines_runCI
+      - IN: dcl-key
        # showBuildStatus: true
       - TASK:
-        - script: ls
+        - script: echo $DCLKEY_INTEGRATION_USERNAME
+        - script: echo $DCLKEY_INTEGRATION_TOKEN
+        - script: echo $DCLKEY_NAME
+        - script: echo $DCLKEY_ID
+        - script: echo $DCLKEY_OPERATION
+        - script: echo $DCLKEY_VERSIONID
+        - script: echo $DCLKEY_VERSIONNUMBER
+        - script: echo $DCLKEY_TYPE
   
-  - name: runshscript
-    type: runSh
-    steps:
-      - IN: sample_prodCiPipelinesRepo
-       # showBuildStatus: true
-      - IN: ship_dh
-      - IN: sample_img
-      - IN: test_params  
-      - IN: t2runsh
-      - IN: key-values
-      - TASK:
-        - script: ./IN/sample_prodCiPipelinesRepo/gitRepo/runsh/testScript.sh
-        - script: echo $key1
-        - script: echo $key2
-        - script: echo "param resource user defined env $TEST"
-        - script: echo "param resource user defined env $DEV"
-        - script: sleep 3m
-      - OUT: test_out_img
-    flags: runshscript
  
-  - name: runsh_pre_jobscript
-    type: runSh
-    allowPublicAccess: true
-    on_start:
-      - NOTIFY: notify-slack1
-      - NOTIFY: notify-email1
-      - NOTIFY: notify-hipchat1
-      - NOTIFY: notify-irc1
-      - script: echo 'it is for on_start'      
-    steps:    
-      - IN: sample_prodCiPipelinesRepo
-        switch: off
-      - IN: runshscript   
-      - TASK:
-        - script: echo $FOO
-        - script: ./IN/sample_prodCiPipelinesRepo/gitRepo/runsh/pre_runshJob.sh   
-        - script: sleep 3m
-       # - script: printenv
-    flags: runsh_pre_jobscript
-    on_success:      
-      - script: echo 'test in on_success'
-      - script: ls
-      - script: echo 'it is success'
-    # # - script: ./IN/sample-script-3/gitRepo/echo.sh
-    on_failure:
-      - script: echo 'testing1 failure'      
-      - script: pwd
-      - script: echo 'OOPS on_failure :('
-    on_cancel:
-      - script: echo "This works on_always"
-      - NOTIFY: notify-slack1
-      - NOTIFY: notify-email1
-      - NOTIFY: notify-hipchat1
-      - NOTIFY: notify-irc1
-
-  - name: runcliscript
-    type: runCLI
-    allowPublicAccess: false
-    steps:      
-      - IN: sample_prodCiPipelinesRepoTagsnReleases 
-      - IN: ship_dh_cli
-      - IN: t3runcli
-      - IN: key-values
-      - TASK:        
-        - script: ./IN/sample_prodCiPipelinesRepoTagsnReleases/gitRepo/runCli/runcliScript.sh
-        - script: echo $key1
-        - script: echo $key2    
-        - script: sleep 3m
-    flags: runcliscript 
-    always:
-      - script: echo "This works on_always"
-      - NOTIFY: notify-slack1
-      - NOTIFY: notify-email1
-      - NOTIFY: notify-hipchat1
-      - NOTIFY: notify-irc1
- 
-  - name: manifest_dep
-    type: manifest
-    steps:
-      - IN: deploy_img       
-      - IN: t1
-    flags: manifest_dep 
-    
-  - name: deploy_ddc
-    type: deploy    
-    on_start:
-      - NOTIFY: notify-slack1
-      - NOTIFY: notify-email1
-      - NOTIFY: notify-hipchat1
-      - NOTIFY: notify-irc1
-    steps:      
-      - IN: manifest_dep
-      - IN: ddc_cluster
-      - IN: ddc_dopts
-      - IN: t2runsh
-      - TASK: managed
-    flags: deploy_ddc
-    on_success:         
-      - NOTIFY: notify-slack1
-      - NOTIFY: notify-email1
-      - NOTIFY: notify-hipchat1
-      - NOTIFY: notify-irc1    
-    on_failure:
-      - NOTIFY: notify-slack1
-      - NOTIFY: notify-email1
-      - NOTIFY: notify-hipchat1
-      - NOTIFY: notify-irc1
-      
-   - name: deployService-2
-     type: provision
-     steps:
-       - IN: sn-gke-service-lb 
