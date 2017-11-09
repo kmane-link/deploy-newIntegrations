@@ -13,6 +13,7 @@ jobs:
       - IN: sample_prodCiPipelinesRepo
        # showBuildStatus: true
       - IN: ship_oldawsiamint
+        versionName: "test-versionname-shows-onhover"
       - TASK:
         - script: echo $SHIP_OLDAWSIAMINT_INTEGRATION_NAME
         - script: echo $SHIP_OLDAWSIAMINT_INTEGRATION_ASSUMEROLEARN
