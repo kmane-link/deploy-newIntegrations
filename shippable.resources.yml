@@ -6,95 +6,14 @@ resources:
       sourceName: "shiptestlink/deploy-newIntegrations"
       branch: master
    
-  - name: deploy_img
+  - name: deploy_img_ddc
     type: image
     integration: docker
     pointer:
       sourceName: "shippabledocker/pipelinev2"
     seed:
       versionName: "deploy"
-  
-  - name: deploy_img2
-    type: image
-    integration: docker
-    pointer:
-      sourceName: "shippabledocker/pipelinev2"
-    seed:
-      versionName: "deploy.2"
-      
-  - name: oldawsIam_cluster
-    type: cluster
-    integration: awsiamold
-    pointer:
-      sourceName : "testiam"
-      region: "us-east-1"
-  
-  - name: newawsIam_cluster
-    type: cluster
-    integration: awsiamnew 
-    pointer:
-      sourceName : "testiam"
-      region: "us-east-1"
-    
-  - name: awsiam_dopts
-    type: dockerOptions
-    version:
-      memory: 128
-      memoryReservation: 64
-    flags: awsiam_options  
-    
-  - name: test_out_img
-    type: image
-    integration: docker
-    pointer:
-      sourceName: "shippabledocker/ship_plv2node"
-    seed:
-      versionName: "latest"
-    flags: test_out_img    
-    
-  - name: ship_oldawsiamint
+  - name: dcl-key
     type: integration
-    integration: "awsiamold"  
-  
-  - name: ship_newawsiamint
-    type: integration
-    integration: "awsiamnew" 
-    
-  - name: test_params
-    type: params
-    version:
-      params:
-        TEST: rc
-  
-  - name: test_replica
-    type: replicas
-    version:
-      count: 2
-  - name: sn-gke-service-lb                               #required
-    type: loadBalancer                          #required
-    integration: ddc  #Required for use in provision jobs
-    pointer:
-      sourceName: "xyz-scriptnull-local"  # the service name (metadata.name)
-      method: ClusterIP # the service type Kubernetes default: ClusterIP
-      clusterName: "testnode2" # The namespace for the service
-      region: "asia-east1-a"
-      namespace: "default"    # optional
-    version:
-      ports:
-        - name: scriptnull-local-port  # Required for multiple ports, must be a DNS_LABEL
-          protocol: TCP  # Kubernetes default: TCP
-          port: 8001     # Required.
-          targetPort: 8002 # A number in 1-65535 or an "IANA_SVC_NAME"  This is the port to access the pod.
-         # nodePort: <integer> # Port exposed on the node.  Kubernetes will auto-allocate by default.
-      selector:
-        new: scriptnull-local #
-    
-   
- # - name: ship_oldddc_cli
- #   type: cliConfig
-  #  integration: "ddc"
-  
- # - name: ship_newddc_cli
- #   type: cliConfig
-  #  integration: "newddc"
-    
+    integration: test-dcl
+ 
