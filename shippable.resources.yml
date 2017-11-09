@@ -20,7 +20,7 @@ resources:
     pointer:
       sourceName: "shippabledocker/pipelinev2"
     seed:
-      versionName: "latest"
+      versionName: "deploy.2"
       
   - name: oldawsIam_cluster
     type: cluster
