@@ -2,7 +2,7 @@ jobs:
   - name: sample_runSh-dcl
     type: runSh
     steps:
-      - IN: sample_prodcipipelines_runCI
+      - IN: sample_prodCiPipelinesRepo
       - IN: dcl-key
        # showBuildStatus: true
       - TASK:
