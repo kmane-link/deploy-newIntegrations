@@ -115,3 +115,7 @@ jobs:
       - NOTIFY: notify-hipchat1
       - NOTIFY: notify-irc1
       
+   - name: deployService-2
+     type: provision
+     steps:
+       - IN: sn-gke-service-lb 
