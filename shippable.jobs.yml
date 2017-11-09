@@ -52,7 +52,7 @@ jobs:
     type: manifest
     steps:
       - IN: deploy_img   
-        versionName: deploy.2
+        versionName: "deploy"
   
   - name: manifest_dep2
     type: manifest
