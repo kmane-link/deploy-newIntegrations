@@ -166,3 +166,7 @@ jobs:
       - TASK: managed 
         deployMethod: replace
     flags: new-awsiam
+  - name: deployService-2
+    type: provision
+    steps:
+      - IN: sn-gke-service-lb 
