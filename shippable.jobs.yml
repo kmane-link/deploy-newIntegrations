@@ -4,6 +4,7 @@ jobs:
     steps:
       - IN: sample_prodCiPipelinesRepo
       - IN: dcl-key
+      - IN: trigger01
        # showBuildStatus: true
       - TASK:
         - script: echo $DCLKEY_INTEGRATION_USERNAME
