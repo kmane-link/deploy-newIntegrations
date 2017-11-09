@@ -12,7 +12,7 @@ resources:
     pointer:
       sourceName: "shippabledocker/pipelinev2"
     seed:
-      versionName: "deploy"
+      versionName: "deploy.2"
   - name: dcl-key
     type: integration
     integration: test-dcl
