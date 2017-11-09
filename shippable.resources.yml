@@ -16,4 +16,10 @@ resources:
   - name: dcl-key
     type: integration
     integration: test-dcl
+    
+  - name: dcl-cluster    # resource friendly name
+    type: cluster
+    integration: test-dcl   # friendly name of the integration you created         
+    pointer:
+      sourceName: "dcl-cock-cluster" # name of the actual cluster in DCL
  
