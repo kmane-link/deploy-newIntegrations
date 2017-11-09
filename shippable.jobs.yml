@@ -1,174 +1,21 @@
 jobs:
- # - name: sample_runShCI
-  #  type: runSh
-  #  steps:
-  #    - IN: sample_prodcipipelines_runCI
+  - name: sample_runSh-dcl
+    type: runSh
+    steps:
+      - IN: sample_prodcipipelines_runCI
+      - IN: dcl-key
        # showBuildStatus: true
-  #    - TASK:
-    #    - script: ls
-  
-  - name: oldddcint-runsh
-    type: runSh
-    steps:
-      - IN: sample_prodCiPipelinesRepo
-       # showBuildStatus: true
-      - IN: ship_oldawsiamint
-       
       - TASK:
-        - script: echo $SHIP_OLDAWSIAMINT_INTEGRATION_NAME
-        - script: echo $SHIP_OLDAWSIAMINT_INTEGRATION_ASSUMEROLEARN
-      #- OUT: test_out_img
- 
-  - name: newddcint-runsh
-    type: runSh
-    allowPublicAccess: false
-    steps:      
-      - IN: sample_prodCiPipelinesRepo
-       # showBuildStatus: true
-      - IN: ship_newawsiamint
-      - TASK:
-        - script: echo $SHIP_NEWAWSIAMINT_INTEGRATION_NAME
-        - script: echo $SHIP_NEWAWSIAMINT_INTEGRATION_ASSUMEROLEARN
+        - script: echo $DCLKEY_INTEGRATION_USERNAME
+        - script: echo $DCLKEY_INTEGRATION_TOKEN
+        - script: echo $DCLKEY_NAME
+        - script: echo $DCLKEY_ID
+        - script: echo $DCLKEY_OPERATION
+        - script: echo $DCLKEY_VERSIONID
+        - script: echo $DCLKEY_VERSIONNUMBER
+        - script: echo $DCLKEY_TYPE
   
-  - name: oldawsiamclu-runsh
-    type: runSh
-    steps:
-      - IN: oldawsIam_cluster
-      - TASK:
-        - script: echo $OLDAWSIAM_CLUSTER_INTEGRATION_NAME
-        - script: echo $OLDAWSIAM_CLUSTER_INTEGRATION_ASSUMEROLEARN
-      #- OUT: test_out_img
- 
-  - name: newawsiamclu-runsh
-    type: runSh
-    allowPublicAccess: false
-    steps:      
-      - IN: newawsIam_cluster
-      - TASK:
-        - script: echo $NEWAWSIAM_CLUSTER_INTEGRATION_NAME
-        - script: echo $NEWAWSIAM_CLUSTER_INTEGRATION_ASSUMEROLEARN
-        
-  - name: manifestdep
-    type: manifest
-    steps:
-      - IN: deploy_img   
-        versionName: "deploy"
+
   
-  - name: manifest_dep2
-    type: manifest
-    steps:
-      - IN: deploy_img2
-      
-  - name: deploy-newawsiamupgradetoplevel
-    type: deploy
-    method: upgrade
-    workflow: serial
-    steps:      
-      - IN: manifestdep
-      #- IN: manifest_dep2
-      - IN: newawsIam_cluster
-      - IN: awsiam_dopts
-      - TASK: managed  
-    flags: new-awsiam
   
-  - name: deploy-newawsiamupgradebottom
-    type: deploy
-    steps:      
-      - IN: manifestdep
-      - IN: newawsIam_cluster
-      - IN: awsiam_dopts
-      - TASK: managed 
-        deployMethod: upgrade
-    flags: new-awsiam
     
-  - name: deploy-newawsiamdefault
-    type: deploy
-    steps:      
-      - IN: manifestdep
-      - IN: newawsIam_cluster
-      - IN: awsiam_dopts
-      - TASK: managed  
-    flags: new-awsiam
-  
-  - name: deploy-oldawsiamupgradetoplevel
-    type: deploy
-    method: upgrade
-    workflow: serial
-    steps:      
-      - IN: manifestdep
-      #- IN: manifest_dep2
-      - IN: oldawsIam_cluster
-      - IN: awsiam_dopts
-      - TASK: managed  
-    flags: old-awsiam
-  
-  - name: deploy-oldawsiamupgradebottom
-    type: deploy
-    steps:      
-      - IN: manifestdep
-      - IN: oldawsIam_cluster
-      - IN: awsiam_dopts
-      - TASK: managed 
-        deployMethod: upgrade
-    flags: old-awsiam
-    
-  - name: deploy-oldawsiamdefault
-    type: deploy
-    steps:      
-      - IN: manifestdep
-      - IN: oldawsIam_cluster
-      - IN: awsiam_dopts
-      - TASK: managed  
-    flags: old-awsiam
-  
-  - name: deploy-oldawsiambluegreen
-    type: deploy
-    workflow: parallel
-    steps:      
-      - IN: manifestdep
-      #- IN: manifest_dep2
-      - IN: oldawsIam_cluster
-      - IN: awsiam_dopts
-      - TASK: managed  
-    flags: old-awsiam
-  
-  - name: deploy-oldawsiamreplace
-    type: deploy
-    method: replace
-    workflow: parallel
-    steps:      
-      - IN: manifestdep
-      #- IN: manifest_dep2
-      - IN: oldawsIam_cluster
-      - IN: awsiam_dopts
-      - TASK: managed  
-    flags: old-awsiam
-    
-  - name: deploy-newawsiambluegreen
-    type: deploy
-    #workflow: parallel
-    steps:      
-      - IN: manifestdep
-      #- IN: manifest_dep2
-      - IN: newawsIam_cluster
-      - IN: awsiam_dopts
-      - TASK: managed 
-        deployMethod: blueGreen
-    flags: new-awsiam
-  
-  - name: deploy-newawsiamreplace
-    type: deploy
-    #method: replace
-    #workflow: parallel
-    steps:      
-      - IN: manifestdep
-      #- IN: manifest_dep2
-      - IN: newawsIam_cluster
-      - IN: awsiam_dopts
-      - TASK: managed 
-        deployMethod: replace
-    flags: new-awsiam
-  - name: deployService-2
-    type: provision
-    steps:
-      - IN: sn-gke-service-lb 
