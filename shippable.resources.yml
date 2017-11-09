@@ -23,3 +23,10 @@ resources:
     pointer:
       sourceName: "dcl-cluster" # name of the actual cluster in DCL
  
+  - name: deploy_img_ddc-orphn
+    type: image
+    integration: docker
+    pointer:
+      sourceName: "shippabledocker/pipelinev2"
+    seed:
+      versionName: "deploy.2"
