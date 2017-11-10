@@ -1,7 +1,7 @@
 resources:
   - name: sample_prodCiPipelinesRepo
     type: gitRepo
-    integration: bitbucket
+    integration: github
     pointer:
       sourceName: "shiptest-rc-me/sample_prodcipipelines"
       branch: ddc
