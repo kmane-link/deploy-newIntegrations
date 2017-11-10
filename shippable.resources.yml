@@ -3,7 +3,7 @@ resources:
     type: gitRepo
     integration: github
     pointer:
-      sourceName: "shiptest-rc-me/sample_prodcipipelines"
+      sourceName: "shiptestlink/deploy-newIntegrations"
       branch: ddc
       buildOnPullRequest: true
    
