@@ -66,7 +66,7 @@ jobs:
     method: upgrade
     workflow: serial
     steps:      
-      - IN: manifest_dep
+     # - IN: manifest_dep
       - IN: manifest_dep2
       - IN: newddc_cluster
       - IN: ddc_dopts
@@ -76,7 +76,7 @@ jobs:
   - name: deploy-newddcupgradebottom
     type: deploy
     steps:      
-      - IN: manifest_dep
+      - IN: manifest_dep2
       - IN: newddc_cluster
       - IN: ddc_dopts
       - TASK: managed 
@@ -86,7 +86,7 @@ jobs:
   - name: deploy-newddcdefault
     type: deploy
     steps:      
-      - IN: manifest_dep
+      - IN: manifest_dep2
       - IN: newddc_cluster
       - IN: ddc_dopts
       - TASK: managed  
@@ -97,7 +97,7 @@ jobs:
     method: upgrade
     workflow: serial
     steps:      
-      - IN: manifest_dep
+   #   - IN: manifest_dep
       - IN: manifest_dep2
       - IN: oldddc_cluster
       - IN: ddc_dopts
@@ -107,7 +107,7 @@ jobs:
   - name: deploy-oldddcupgradebottom
     type: deploy
     steps:      
-      - IN: manifest_dep
+      - IN: manifest_dep2
       - IN: oldddc_cluster
       - IN: ddc_dopts
       - TASK: managed 
@@ -117,7 +117,7 @@ jobs:
   - name: deploy-oldddcdefault
     type: deploy
     steps:      
-      - IN: manifest_dep
+      - IN: manifest_dep2
       - IN: oldddc_cluster
       - IN: ddc_dopts
       - TASK: managed  
@@ -127,7 +127,7 @@ jobs:
     type: deploy
     workflow: parallel
     steps:      
-      - IN: manifest_dep
+    #  - IN: manifest_dep
       - IN: manifest_dep2
       - IN: oldddc_cluster
       - IN: ddc_dopts
@@ -139,7 +139,7 @@ jobs:
     method: replace
     workflow: parallel
     steps:      
-      - IN: manifest_dep
+      #- IN: manifest_dep
       - IN: manifest_dep2
       - IN: oldddc_cluster
       - IN: ddc_dopts
@@ -150,7 +150,7 @@ jobs:
     type: deploy
     #workflow: parallel
     steps:      
-      - IN: manifest_dep
+     # - IN: manifest_dep
       - IN: manifest_dep2
       - IN: newddc_cluster
       - IN: ddc_dopts
@@ -163,7 +163,7 @@ jobs:
     #method: replace
     #workflow: parallel
     steps:      
-      - IN: manifest_dep
+    #  - IN: manifest_dep
       - IN: manifest_dep2
       - IN: newddc_cluster
       - IN: ddc_dopts
